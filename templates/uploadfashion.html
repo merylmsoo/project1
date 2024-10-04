@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>uploadfashion</title>
+     <!-- css supporting files -->
+     <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+     <link rel="stylesheet" href="../static/css/bootstrap.css">
+     <link rel="stylesheet" href="../static/css/lightslider.css">
+     <link rel="stylesheet" href="../static/css/style.css">
+     
+     <!-- js supporting files -->
+      <script src="../static/js/bootstrap.bundle.min.js"></script>
+      <script src="../static/js/jquery.js"></script>
+      <script src="../static/js/lightslider.js"></script>
+<script src="../static/js/script.js"></script>
+</head>
+<body><!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>upload</title>
+        <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    </head>
+    <body>
+     <!-- include navbar    -->
+      {%include 'navbar.html'%}
+      <br>
+      <section class="row">
+        <div class="col-md-6 ms-5">
+          <div class="card shadow p-5">
+            <b class="text-success">{{ message }}</b>
+            <b class="text-danger">{{ error }}</b>
+            <h1 class="text-warning">upload your fashion</h1>
+            <form action="/uploadfashion" method="post" enctype="multipart/form-data">
+    
+              <label for="">product Name</label>
+              <input type="text" class="form-control" name="product_name" required><br>
+              <label for="">product description</label>
+              <textarea name="product_desc" id="" class="form-control" required></textarea><br>
+              <label for="">product cost</label>
+              <input type="number" class="form-control" required name="product_cost"><br>
+              <label for="">fashion category</label>
+              <select name="product_category" id="" class="form-control" required>
+                <option value="">--select--</option>
+                <option value="dresses">dresses</option>
+                <option value="handbags">handbags</option>
+                <option value="cap">caps</option>
+                <option value="socks">socks</option>
+                <option value="belt">belts</option>
+           
+    
+              </select><br>
+              <label for="">product image</label>
+              <input type="file" class="form-control" name="product_image_name" required><br>
+       <input type="submit" class="btn btn-danger" value="upload/add fashion" width="100">
+    
+            </form>
+    
+          </div>
+        </div>
+      </section>
+    </body>
+    </html>
+</body>
+</html>

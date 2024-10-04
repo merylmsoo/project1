@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fashion</title>
+       <!-- css supporting files -->
+       <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+       <link rel="stylesheet" href="../static/css/bootstrap.css">
+       <link rel="stylesheet" href="../static/css/lightslider.css">
+       <link rel="stylesheet" href="../static/css/style.css">
+       
+       <!-- js supporting files -->
+        <script src="../static/js/bootstrap.bundle.min.js"></script>
+        <script src="../static/js/jquery.js"></script>
+        <script src="../static/js/lightslider.js"></script>
+  <script src="../static/js/script.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+    
+    <!-- insert navbar -->
+    {%include 'navbar.html'%}
+    <!-- inser carousel using jinja2 templates  -->
+  {%include 'carousel.html'%}
+    </div>
+    <br>
+<h3 class="bg-warning text-white p-2">Dresses</h3>
+<section class="slider p-4">
+    <ul class="cs-hidden autoWidth">
+        <!-- we store the phones in an item variable called phones  -->
+         <!-- we need to loop all the phones to get a single phone item  -->
+          <!-- each single phone item has index from 0 -5 where -->
+           <!-- index 0 = product_id index 1= product_name, index 2= produc_desc, index 3= product_cost, index 4 = product_category, index 5 = product_image_name -->
+            <!-- loop all the phone items  -->
+             {% for singlefashion in dresses %}
+                 <li>
+                  <div class="box">
+                    <div class="slide-img">
+                      <img src="../static/images/{{ singlefashion[5]}}" alt="{{singlefashion[1]}}" width="50" height="50">
+                      <!-- put an overlay button  -->
+                       <div class="overlay">
+                        <a href="/single/{{singlefashion[0]}}" class="buy-btn">buy now</a>
+                       </div>
+                    </div>
+               <div class="detail-box">
+                {{ singlefashion[1]}} <br>  <b class="text-warning"> KES{{ singlefashion[3]}}</b> </div>
+    
+    
+                  </div>
+                 </li>
+    
+             <!-- end of for loop -->
+              {% endfor %} <br>
+          
+      </ul>
+</section>
+<br>
+<h3 class="bg-warning text-white p-2">handbags</h3>
+<section class="slider p-4">
+    <ul class="cs-hidden autoWidth">
+      
+             {% for singlefashion in handbags %}
+                 <li>
+                  <div class="box">
+                    <div class="slide-img">
+                      <img src="../static/images/{{ singlefashion[5]}}" alt="{{singlefashion[1]}}" width="50" height="50">
+                      <!-- put an overlay button  -->
+                       <div class="overlay">
+                        <a href="/single/{{singlefashion[0]}}" class="buy-btn">buy now</a>
+                       </div>
+                    </div>
+               <div class="detail-box">
+                {{ singlefashion[1]}} <br>  <b class="text-warning"> KES{{ singlefashion[3]}}</b> </div>
+    
+    
+                  </div>
+                 </li>
+    
+             <!-- end of for loop -->
+              {% endfor %} <br>
+          
+      </ul>
+</section>
+<br>
+<h3 class="bg-warning text-white p-2">caps</h3>
+<section class="slider p-5">
+    <ul class="cs-hidden autoWidth">
+      
+             {% for singlefashion in cap %}
+                 <li>
+                  <div class="box">
+                    <div class="slide-img">
+                      <img src="../static/images/{{ singlefashion[5]}}" alt="{{singlefashion[1]}}" width="50" height="50">
+                      <!-- put an overlay button  -->
+                       <div class="overlay">
+                        <a href="/single/{{singlefashion[0]}}" class="buy-btn">buy now</a>
+                       </div>
+                    </div>
+               <div class="detail-box">
+                {{ singlefashion[1]}} <br>  <b class="text-warning"> KES{{ singlefashion[3]}}</b> </div>
+    
+    
+                  </div>
+                 </li>
+    
+             <!-- end of for loop -->
+              {% endfor %} <br>
+          
+      </ul>
+</section>
+<br>
+<h3 class="bg-warning text-white p-2">socks</h3>
+<section class="slider p-4">
+    <ul class="cs-hidden autoWidth">
+      
+             {% for singlefashion in socks %}
+                 <li>
+                  <div class="box">
+                    <div class="slide-img">
+                      <img src="../static/images/{{ singlefashion[5]}}" alt="{{singlefashion[1]}}" width="50" height="50">
+                      <!-- put an overlay button  -->
+                       <div class="overlay">
+                        <a href="/single/{{singlefashion[0]}}" class="buy-btn">buy now</a>
+                       </div>
+                    </div>
+               <div class="detail-box">
+                {{ singlefashion[1]}} <br>  <b class="text-warning"> KES{{ singlefashion[3]}}</b> </div>
+    
+    
+                  </div>
+                 </li>
+    
+             <!-- end of for loop -->
+              {% endfor %} <br>
+          
+      </ul>
+</section>
+<br>
+<h3 class="bg-warning text-white p-2">belts</h3>
+<section class="slider p-4">
+    <ul class="cs-hidden autoWidth">
+      
+             {% for singlefashion in belt %}
+                 <li>
+                  <div class="box">
+                    <div class="slide-img">
+                      <img src="../static/images/{{ singlefashion[5]}}" alt="{{singlefashion[1]}}" width="50" height="50">
+                      <!-- put an overlay button  -->
+                       <div class="overlay">
+                        <a href="/single/{{singlefashion[0]}}" class="buy-btn">buy now</a>
+                       </div>
+                    </div>
+               <div class="detail-box">
+                {{ singlefashion[1]}} <br>  <b class="text-warning"> KES{{ singlefashion[3]}}</b> </div>
+    
+    
+                  </div>
+                 </li>
+    
+             <!-- end of for loop -->
+              {% endfor %} <br>
+          
+      </ul>
+</section>
+ <!-- we use jinja2 template  -->
+ {% include 'footer.html' %}
+</body>
+</html>
