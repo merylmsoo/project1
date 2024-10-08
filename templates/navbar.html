@@ -34,12 +34,24 @@
           </li>
         </ul>
         <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-primary" type="submit">login</button>
-          <!-- Button trigger modal -->
-          <li class="nav-item">
-            <a class="btn btn-primary" href="/register">register</a>
-          </li>
+  <!-- check if session[key] exists  -->
+   <!-- if it exists the user should not see login and register  -->
+    <!-- user is supposed to see their email and a logout button  -->
+    {% if session['key'] %}
+     <!-- user exists  -->
+             <b class="text-info"> logged in: <br> {{ session['key'] }}</b>
+             <a href="/logout" class="btn btn-outline-warning">logout</a>            
+    {% else  %}
+    <li class="nav-item">
+      <a class="btn btn-otline-primary" href="/login">Login</a>
+    </li>
+    <!-- Button trigger modal -->
+    <li class="nav-item">
+      <a class="btn btn-primary" href="/register">register</a>
+    </li>
+     <!-- user does not exist  -->
+    {% endif %}
+      
 
         </form>
       </div>

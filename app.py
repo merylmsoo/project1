@@ -1,7 +1,12 @@
 import re
 from flask import *
+from psutil import users
 import pymysql
+
+from functions import checkpassword
 app = Flask(__name__)
+# session key 
+app.secret_key = "123W"
 @app.route("/")
 def Homepage():
 # connect to db
@@ -155,52 +160,109 @@ def register():
             gender = request.form['gender']
             phone = request.form['phone']
             password = request.form['password']
+            # validate user password 
+            # respone = checkpassword(password)
+            # if respone == True:
+            #     # password MET ALL conditions
+            # else:
+            #     # password didn't meet all condidions
+            #   return render_template("register.html", message = "registered successfully")
 
-            try:
-                connection = pymysql.connect(host='localhost', user='root', password='', database='ModiShop')
-                cursor = connection.cursor()
+            # Password validity check
+            # if (len(password) < 6 or
+            #     not re.search(r'[A-Z]', password) or 
+            #     not re.search(r'[a-z]', password) or  
+            #     not re.search(r'[0-9]', password) or
+            #     not re.search(r'[!@#$%^&*(),.?":{}|<>]', password)):
+            #     msg = 'Password must be at least 6 characters long, contain one uppercase letter, one lowercase letter, one digit, and one special character!'
+            #     return render_template("register.html", error=msg)
 
-                # Check if account already exists
-                sql = "SELECT * FROM users WHERE username = %s OR email = %s"
-                cursor.execute(sql, (username, email))
-                account = cursor.fetchone()
+            # Establish database connection
+        connection = pymysql.connect(host='localhost', user='root', password='', database='ModiShop')
+        cursor = connection.cursor()
 
-                if account:
-                    msg = 'Account already exists!'
-                elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-                    msg = 'Invalid email address!'
-                elif not re.match(r'[A-Za-z0-9]+', username):
-                    msg = 'Username must contain only characters and numbers!'
-                elif not username or not password or not email:
-                    msg = 'Please fill out the form!'
-                else:
-                    # Insert new user
-                    sql = "INSERT INTO users (username, email, gender, phone, password) VALUES (%s, %s, %s, %s, %s)"
-                    data = (username, email, gender, phone, password)
-                    cursor.execute(sql, data)
-                    connection.commit()
-                    msg = 'You have successfully registered!'
+            # # Check if account already exists
+            # sql = "SELECT * FROM users WHERE username = %s OR email = %s"
+            # cursor.execute(sql, (username, email))
+            # account = cursor.fetchone()
 
-            except pymysql.MySQLError as e:
-                msg = f'Error: {e}'
-            finally:
-                cursor.close()
-                connection.close()
-        else:
-            msg = 'Please fill out the form!'
+            # if account:
+            #     msg = 'Account already exists!'
+            #     return render_template("register.html", error=msg)
 
-    return render_template('register.html', msg=msg)
+            # elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            #     msg = 'Invalid email address!'
+            #     return render_template("register.html", error=msg)
+
+            # elif not re.match(r'[A-Za-z0-9]+', username):
+            #     msg = 'Username must contain only characters and numbers!'
+            #     return render_template("register.html", error=msg)
+
+            # elif not username or not password or not email:
+            #     msg = 'Please fill out the form!'
+            #     return render_template("register.html", error=msg)
+
+            # Insert new user
+        sql = "INSERT INTO users (username, email, gender, phone, password) VALUES (%s, %s, %s, %s, %s)"
+        data = (username, email, gender, phone, password)
+        cursor.execute(sql, data)
+        connection.commit()
+        return render_template("register.html", message = "registered successfully")
+        
+    else:
+          return render_template("register.html", error = "please fill the form")
 
 
 
 
-@app.route("/login")
+
+    
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    return "this is my login page"
+    # Handle GET request to show the login form
+
+        
+    
+    # Handle POST request for login
+    if request.method == "POST":
+        email = request.form['email']
+        password = request.form['password']
+        
+        # Connect to the database
+        connection = pymysql.connect(host='localhost', user='root', password='', 
+                                     database='ModiShop')
+        cursor = connection.cursor()
+        
+        # Check if user with email exists
+        sql = "SELECT * FROM users WHERE email = %s AND password = %s"
+        data = (email, password)
+        
+        # Execute the query
+        cursor.execute(sql, data)
+        
+        # Check if any result found
+        if cursor.rowcount == 0:
+            # Means they were not found
+            
+            return render_template("login.html", error="Invalid login credentials")
+        else:
+            session['key'] = email
+            # Successful login
+              
+            return redirect("/")
+    else:
+        return render_template("login.html")
+        
+        
+       
+
+
+
 
 @app.route("/logout")
 def logout():
-    return "this is my logout page"
+   session.clear()  # Clears all session data
+   return redirect("/login")
 
 if __name__==("__main__"):
     app.run(debug=True, port=8001)

@@ -22,25 +22,17 @@
   <section class="row">
     <div class="col-md-6 ms-5">
       <div class="card shadow p-5">
-        <form action="/register" method="post">
-        <label for="">username</label><br>
-        <input type="text" class="form-control" name="username" required>
-        <br>
+        <form action="/login" method="post">
+      
         <label for="">email</label>
         <input type="email" class="form-control" name="email" required><br>
-        <select name="gender" id="" class="form-control" required>
-          <option value="male">male</option>
-          <option value="female">female</option>
-        </select>
-        <br>
-        <label for="">Phone</label>
-        <input type="tel" class="form-control" name="phone" required>
+       
         <label for="">password</label>
         <input type="password" class="form-control" name="password" required><br>
-        <a href="">already have an account? click to login</a>
+        <a href="/register">don't have an account? click to register</a>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <input type="submit" class="btn btn-danger" value="Register" width="100">
+          <input type="submit" class="btn btn-danger" value="Login" width="100">
         </div>
 
 
