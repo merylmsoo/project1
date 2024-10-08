@@ -1,3 +1,4 @@
+import re
 from flask import *
 import pymysql
 app = Flask(__name__)
@@ -139,9 +140,59 @@ def uploadfashion():
 def about():
     return "this is my about page"
 
-@app.route("/register")
+
+@app.route("/register", methods=['GET', 'POST'])
 def register():
-    return "this is my register page"
+    msg = ''
+    
+    if request.method == 'POST':
+        if ('username' in request.form and 'email' in request.form and
+            'gender' in request.form and 'phone' in request.form and 
+            'password' in request.form):
+            
+            username = request.form['username']
+            email = request.form['email']
+            gender = request.form['gender']
+            phone = request.form['phone']
+            password = request.form['password']
+
+            try:
+                connection = pymysql.connect(host='localhost', user='root', password='', database='ModiShop')
+                cursor = connection.cursor()
+
+                # Check if account already exists
+                sql = "SELECT * FROM users WHERE username = %s OR email = %s"
+                cursor.execute(sql, (username, email))
+                account = cursor.fetchone()
+
+                if account:
+                    msg = 'Account already exists!'
+                elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+                    msg = 'Invalid email address!'
+                elif not re.match(r'[A-Za-z0-9]+', username):
+                    msg = 'Username must contain only characters and numbers!'
+                elif not username or not password or not email:
+                    msg = 'Please fill out the form!'
+                else:
+                    # Insert new user
+                    sql = "INSERT INTO users (username, email, gender, phone, password) VALUES (%s, %s, %s, %s, %s)"
+                    data = (username, email, gender, phone, password)
+                    cursor.execute(sql, data)
+                    connection.commit()
+                    msg = 'You have successfully registered!'
+
+            except pymysql.MySQLError as e:
+                msg = f'Error: {e}'
+            finally:
+                cursor.close()
+                connection.close()
+        else:
+            msg = 'Please fill out the form!'
+
+    return render_template('register.html', msg=msg)
+
+
+
 
 @app.route("/login")
 def login():
