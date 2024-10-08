@@ -20,9 +20,28 @@
  <h3 class="text-warning">{{product[1]}}</h3><br>
  <p>{{product[2]}}</p>
  <br>
- <b class="text-danger">product category: {{product[4]}}</b><br>
+ <b class="text-danger">product category: {{product[4]}}</b><br><br>
  <b class="text-success"> product cost: {{product[3]}}</b><br>
- <button type="button" class="btn btn-danger w-100">Buy Now</button>
+ <!-- chevk if email exists in session['key']  -->
+  {% if session['key'] %}
+  <!-- means user is logged in 
+   you can now procees to make payments -->
+   <!-- show user a form to complete payment  -->
+    <form action="/mpesa" method="post">
+      <!-- create a phone number input   -->
+       <input type="number" class="form-control" placeholder="enter phone 254xxxxxxx" name="phone">
+       <label for="">To pay KES
+        <input type="number" class="form-control" name="amount" value="{{product[3]}}" readonly><br>
+        <input type="submit" value="Pay Now" class="btn btn-info">
+    </form>
+
+   {% else %}
+   <!-- user is not logged in 
+    ask them to login to make purchce -->
+    <h4 class="text-warning"> Please sign in to make purchase</h4>
+    <a href="/login" class="btn btn-secondary btn-sm">Login</a>
+    {% endif %}
+
     </div>
 
     </div>

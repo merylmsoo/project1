@@ -4,6 +4,7 @@ from psutil import users
 import pymysql
 
 from functions import checkpassword
+from mpesa import *
 app = Flask(__name__)
 # session key 
 app.secret_key = "123W"
@@ -253,9 +254,17 @@ def login():
     else:
         return render_template("login.html")
         
-        
-       
-
+ #mpesa
+#  implement STK PUSH 
+@app.route('/mpesa', methods = ['POST'])
+def mpesa():
+    phone = request.form["phone"]
+    amount = request.form["amount"]
+    # use mpesa_payment function from mpesa.py
+    # it accepts the phone and amount as arguments  
+    mpesa_payment(amount, phone )
+    return '<h1> please complete payment in your phone </h1>' \
+        '<a href ="/" class ="btn btn-secondary btn-sm> Go back to products </a>'
 
 
 
