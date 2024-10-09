@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 04, 2024 at 11:22 AM
+-- Generation Time: Oct 09, 2024 at 10:18 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -42,7 +42,7 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`product_id`, `product_name`, `product_desc`, `product_cost`, `product_category`, `product_image_name`) VALUES
 (1, 'infinix', 'most durable and affordable phone in the market', 20000, 'phones', 'phone1.jpg'),
-(2, 'NovaVision Lite', ' A mid-range phone with a vibrant display, decent performance for everyday tasks, and a sleek design, perfect for students and young professionals.\r\n', 50000, 'phones', 'phone2.jpg'),
+(2, 'NovaVision Lite', ' A mid-range phone with a vibrant display, decent performance for everyday tasks, and a sleek design, perfect for students and young professionals.\r\n', 1, 'phones', 'phone2.jpg'),
 (3, 'EliteSecure 11', 'A privacy-centric smartphone with advanced encryption features, a secure operating system, and a 6.6-inch display designed for professionals.', 100000, 'phones', 'phone3.jpg'),
 (4, 'TravelLite 9', 'A travel-focused phone with global SIM compatibility, a long-lasting battery, and a compact design that fits easily in pockets.\r\n', 70000, 'phones', 'phone4.jpg'),
 (5, 'HealthTrack 7', 'A health-oriented phone that includes built-in sensors for monitoring fitness metrics, a large display, and integration with health apps.', 90000, 'phones', 'phone5.jpg'),
@@ -175,6 +175,21 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `gender`, `phone`, `password`) VALUES
+(5, 'nimrod arak', 'merylmsoo32@gmail.com', 'male', '0794758281', 'Mary@5293'),
+(6, 'duncan muturi', 'merylmsoo@gmail.com', 'male', '+254794758281', 'Mary5293@'),
+(7, 'admin', 'merylms@gmail.com', 'male', '0710237039', 'Mary@5293'),
+(8, 'CHURCH', 'merylms@gmail.com', 'male', '0768474795', 'your password is too short'),
+(9, 'Ronoh Flevian', 'merylmsoo32@gmail.com', 'male', '0757694122', 'your password is too short'),
+(10, 'Ronoh Flevian', 'merylmsoo32@gmail.com', 'female', '0757694122', 'nhhhhhhh'),
+(11, 'nimrod arak', 'merylmsoo32@gmail.com', 'male', '+254794758281', ' u\'['),
+(12, 'nimrod arak', 'merylmsoo32@gmail.com', 'male', '+254794758281', ' u\'['),
+(13, 'admin', 'admin@gmail.com', 'female', '0794758281', '123456');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -204,7 +219,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

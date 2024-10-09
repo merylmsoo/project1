@@ -11,7 +11,7 @@ app.secret_key = "123W"
 @app.route("/")
 def Homepage():
 # connect to db
- connection = pymysql.connect(host='localhost', user='root', password='', database='ModiShop')
+ connection = pymysql.connect(host='Merylmsoo6.mysql.pythonanywhere-services.com', user='Merylmsoo6', password='Mary@5293', database='Merylmsoo6$default')
  sql = "SELECT * FROM `products` WHERE `product_category` = 'phones';"
  sql1 = "SELECT * FROM `products` WHERE `product_category` = 'electronics';"
  sql2 = "SELECT * FROM `products` WHERE `product_category` = 'fashion';"
@@ -48,7 +48,7 @@ def Homepage():
 @app.route("/single/<product_id>")
 def singleitem(product_id):
     # connetion to db
- connection = pymysql.connect(host='localhost', user='root', password='', database='ModiShop')
+ connection = pymysql.connect(host='Merylmsoo6.mysql.pythonanywhere-services.com', user='Merylmsoo6', password='Mary@5293', database='Merylmsoo6$default')
 #  create sql query 
  sql= "SELECT * FROM `products` WHERE `product_id`= %s;"
  cursor =connection.cursor()
@@ -68,7 +68,7 @@ def upload():
         product_image_name = request.files['product_image_name']
         product_image_name.save('static/images/' + product_image_name.filename)
         # connect to db
-        connection = pymysql.connect(host='localhost', user='root', password='', database='ModiShop')
+        connection = pymysql.connect(host='Merylmsoo6.mysql.pythonanywhere-services.com', user='Merylmsoo6', password='Mary@5293', database='Merylmsoo6$default')
         # create a cursor 
         cursor = connection.cursor()
         sql = "insert into products (product_name, product_desc, product_cost, product_category, product_image_name) values (%s, %s, %s, %s,%s)"
@@ -87,7 +87,7 @@ def upload():
 @app.route("/fashion")
 def fashion ():
     # coonection to db 
-    connection = pymysql.connect(host='localhost', user='root', password='', database='ModiShop')
+    connection = pymysql.connect(host='Merylmsoo6.mysql.pythonanywhere-services.com', user='Merylmsoo6', password='Mary@5293', database='Merylmsoo6$default')
     sql = "SELECT * FROM `products` WHERE `product_category` = 'dresses';"
     sql1 = "SELECT * FROM `products` WHERE `product_category` = 'handbags';"
     sql2 = "SELECT * FROM `products` WHERE `product_category` = 'cap';"
@@ -125,7 +125,7 @@ def uploadfashion():
         product_image_name = request.files['product_image_name']
         product_image_name.save('static/images/' + product_image_name.filename)
         # commection to db 
-        connection = pymysql.connect(host='localhost', user='root', password='', database='ModiShop')
+        connection = pymysql.connect(host='Merylmsoo6.mysql.pythonanywhere-services.com', user='Merylmsoo6', password='Mary@5293', database='Merylmsoo6$default')
         # create a cursor
         cursor = connection.cursor()
         sql = "insert into products (product_name, product_desc, product_cost, product_category, product_image_name) values (%s, %s, %s, %s,%s)"
@@ -149,7 +149,7 @@ def about():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
-    msg = ''
+    message = ''
     
     if request.method == 'POST':
         if ('username' in request.form and 'email' in request.form and
@@ -179,7 +179,7 @@ def register():
             #     return render_template("register.html", error=msg)
 
             # Establish database connection
-        connection = pymysql.connect(host='localhost', user='root', password='', database='ModiShop')
+        connection = pymysql.connect(host='Merylmsoo6.mysql.pythonanywhere-services.com', user='Merylmsoo6', password='Mary@5293', database='Merylmsoo6$default')
         cursor = connection.cursor()
 
             # # Check if account already exists
@@ -188,19 +188,19 @@ def register():
             # account = cursor.fetchone()
 
             # if account:
-            #     msg = 'Account already exists!'
+            #     message = 'Account already exists!'
             #     return render_template("register.html", error=msg)
 
             # elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-            #     msg = 'Invalid email address!'
+            #     message = 'Invalid email address!'
             #     return render_template("register.html", error=msg)
 
             # elif not re.match(r'[A-Za-z0-9]+', username):
-            #     msg = 'Username must contain only characters and numbers!'
+            #     message = 'Username must contain only characters and numbers!'
             #     return render_template("register.html", error=msg)
 
             # elif not username or not password or not email:
-            #     msg = 'Please fill out the form!'
+            #     message = 'Please fill out the form!'
             #     return render_template("register.html", error=msg)
 
             # Insert new user
@@ -230,8 +230,8 @@ def login():
         password = request.form['password']
         
         # Connect to the database
-        connection = pymysql.connect(host='localhost', user='root', password='', 
-                                     database='ModiShop')
+        connection = pymysql.connect(host='Merylmsoo6.mysql.pythonanywhere-services.com', user='Merylmsoo6', password='Mary@5293', 
+                                     database='Merylmsoo6$default')
         cursor = connection.cursor()
         
         # Check if user with email exists
