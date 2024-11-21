@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Admin Dashboard</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/admindashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/upload">Upload Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/adduser">Add User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/manageproducts">Manage Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/manageusers">Manage Users</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/categories">Category Management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/anaytics">Site Analytics</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                {% if session['key'] %}
+                    <b class="text-light me-3">Logged in as: {{ session['key'] }}</b>
+                    <a href="/logout" class="btn btn-outline-warning">Logout</a>
+                {% else %}
+                    <a class="btn btn-outline-primary me-2" href="/login">Login</a>
+                    <a class="btn btn-primary" href="/register">Register</a>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</nav>
+
+<!-- Admin Dashboard Content -->
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Welcome to the Admin Dashboard</h1>
+
+    <div class="row">
+        <!-- Upload Products -->
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Upload Products</h5>
+                    <p class="card-text">Add new products to the store.</p>
+                    <a href="/upload" class="btn btn-primary">Upload</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add User -->
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Add User</h5>
+                    <p class="card-text">Register new users to the platform.</p>
+                    <a href="/adduser" class="btn btn-primary">Add User</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage Products -->
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Manage Products</h5>
+                    <p class="card-text">View, edit, or delete existing products.</p>
+                    <a href="/manageproducts" class="btn btn-warning">Manage Products</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Manage Users -->
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Manage Users</h5>
+                    <p class="card-text">View, edit, or delete users.</p>
+                    <a href="/manageusers" class="btn btn-warning">Manage Users</a>
+                </div>
+            </div>
+        </div>
+
+      
+
+        <!-- Category Management -->
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Category Management</h5>
+                    <p class="card-text">Manage product categories.</p>
+                    <a href="/managecategories" class="btn btn-info">Manage Categories</a>
+                </div>
+            </div>
+        </div>
+         <!-- Site Analytics -->
+         <div class="col-md-4 mb-3">
+          <div class="card">
+              <div class="card-body text-center">
+                  <h5 class="card-title">Site Analytics</h5>
+                  <p class="card-text">View site performance statistics.</p>
+                  <a href="/siteanalytics" class="btn btn-success">View Analytics</a>
+              </div>
+          </div>
+      </div>
+  </div>
+    </div>
+
+   
+     
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

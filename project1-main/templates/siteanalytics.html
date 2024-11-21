@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Analytics Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="text-center">Site Analytics Dashboard</h1>
+
+    <!-- User Analytics Section -->
+    <div class="card">
+        <div class="card-header">
+            <h4>User Analytics</h4>
+        </div>
+        <div class="card-body">
+            <div id="userAnalytics" style="height: 400px;"></div>
+        </div>
+    </div>
+
+    <!-- Product Views Section -->
+    <div class="card">
+        <div class="card-header">
+            <h4>Product Views</h4>
+        </div>
+        <div class="card-body">
+            <div id="productViews" style="height: 400px;"></div>
+        </div>
+    </div>
+
+    <!-- Sales Analytics Section -->
+    <div class="card">
+        <div class="card-header">
+            <h4>Sales Analytics</h4>
+        </div>
+        <div class="card-body">
+            <div id="salesAnalytics" style="height: 400px;"></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Sample Data for User Analytics
+    Highcharts.chart('userAnalytics', {
+        chart: { type: 'line' },
+        title: { text: 'User Visits Over Time' },
+        xAxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'] },
+        yAxis: { title: { text: 'Number of Users' } },
+        series: [{
+            name: 'Users',
+            data: [30, 40, 50, 70, 90, 110, 130]
+        }]
+    });
+
+    // Sample Data for Product Views
+    Highcharts.chart('productViews', {
+        chart: { type: 'bar' },
+        title: { text: 'Product Views' },
+        xAxis: { categories: ['Pigs', 'Poultry', 'Goats', 'Sheep', 'Dogs'] },
+        yAxis: { title: { text: 'Number of Views' } },
+        series: [{
+            name: 'Views',
+            data: [150, 200, 100, 80, 120]
+        }]
+    });
+
+    // Sample Data for Sales Analytics
+    Highcharts.chart('salesAnalytics', {
+        chart: { type: 'pie' },
+        title: { text: 'Sales Distribution' },
+        series: [{
+            name: 'Sales',
+            colorByPoint: true,
+            data: [
+                { name: 'Pigs', y: 45 },
+                { name: 'Poultry', y: 25 },
+                { name: 'Goats', y: 15 },
+                { name: 'Sheep', y: 10 },
+                { name: 'Dogs', y: 5 }
+            ]
+        }]
+    });
+</script>
+
+</body>
+</html>
